@@ -1,0 +1,12 @@
+/.run/
+/.idea/
+/**/*.egg-info/
+/.env
+/.coverage
+/Docker/.*
+/**/*.log
+/dist/
+/build/
+/coverage_html/
+/venv/
+/main.spec

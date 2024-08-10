@@ -1,0 +1,9 @@
+[run]
+source = src/defi_amm/
+branch = True
+omit =
+    *migrations*
+    *__init__.py
+
+[report]
+show_missing = True

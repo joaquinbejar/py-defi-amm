@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools~=72.1.0", "setuptools-scm~=7.1.0", "wheel~=0.43.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "defi_amm"
+version = "1.0.25"
+dynamic = ["readme"]
+authors = [
+    { name = "©2023 EUIPO", email = "info@euipo.europa.eu" },
+]
+description = "Common Python Library"
+requires-python = ">=3.11"
+keywords = ["common", "python", "library"]
+classifiers = ["Programming Language :: Python :: 3.11"]
+dependencies = [
+    "python-dotenv~=1.0.1",
+    "numpy~=2.0.1",
+    "matplotlib~=3.9.1",
+    "flask~=3.0.3",
+    "pyinstaller~=6.9.0",
+]
+
+[tool.setuptools.dynamic]
+readme = { file = ["README.md"], content-type = "text/markdown" }
+
+[project.optional-dependencies]
+tests = [
+    "time-machine==2.14.2",
+    "coverage==7.6.0"
+]
+extended = [
+    "time-machine==2.14.1"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["defi_amm*"]
