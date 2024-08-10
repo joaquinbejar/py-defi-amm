@@ -1,6 +1,5 @@
-from typing import Dict, Tuple
-
 import math
+from typing import Dict, Tuple
 
 from defi_amm.utils.logging import logger
 

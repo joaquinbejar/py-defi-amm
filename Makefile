@@ -40,10 +40,13 @@ update-pip:
 delete-dependencies:
 	pip freeze | xargs -I %v pip uninstall -y '%v'
 
+docker-clean:
+	docker ps -q --filter "name=defi_amm" | grep -q . && docker stop defi_amm && docker rm defi_amm || true
+
 docker-build:
 	docker build -f Docker/Dockerfile -t "defi_amm:latest" .
 
-docker-run: docker-build
+docker-run: docker-build docker-clean
 	docker run -p 5000:5000 --name defi_amm defi_amm:latest
 
 ### ***** UNIT TESTS ***** ###

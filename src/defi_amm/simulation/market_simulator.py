@@ -14,6 +14,7 @@ class MarketSimulation:
     :param risk_management: The RiskManagement object.
     :param initial_prices: A dictionary containing the initial prices of tokens.
     """
+
     def __init__(self, amm: AMM, risk_management: RiskManagement, initial_prices: dict):
         self.amm = amm
         self.risk_management = risk_management

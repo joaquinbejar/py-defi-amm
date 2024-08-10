@@ -1,8 +1,7 @@
+import math
 from typing import Dict, Tuple
 
-import math
 import numpy as np
-
 from defi_amm.models.amm import AMM
 
 
