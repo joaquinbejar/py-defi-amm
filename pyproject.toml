@@ -24,6 +24,7 @@ dependencies = [
 [tool.setuptools.dynamic]
 readme = { file = ["README.md"], content-type = "text/markdown" }
 
+
 [project.optional-dependencies]
 tests = [
     "time-machine==2.14.2",
