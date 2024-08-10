@@ -1,4 +1,4 @@
-# DeFi AMM (Automated Market Maker) Project
+# DeFi AMM (Automated Market Maker) Project v0.1.0
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -45,8 +45,6 @@ The simulation runs through the following steps:
 4. Generate reports for each scenario
 
 ## Summary of Findings
-
-(Note: This section should be updated with actual findings after running comprehensive simulations)
 
 Initial simulations suggest:
 

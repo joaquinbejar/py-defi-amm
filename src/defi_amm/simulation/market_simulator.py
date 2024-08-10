@@ -7,6 +7,13 @@ from defi_amm.simulation.metrics import ProfitabilityMetrics
 
 
 class MarketSimulation:
+    """
+    Initialize the MarketSimulation class.
+
+    :param amm: The Automated Market Maker (AMM) object.
+    :param risk_management: The RiskManagement object.
+    :param initial_prices: A dictionary containing the initial prices of tokens.
+    """
     def __init__(self, amm: AMM, risk_management: RiskManagement, initial_prices: dict):
         self.amm = amm
         self.risk_management = risk_management
@@ -15,12 +22,40 @@ class MarketSimulation:
         self.metrics = ProfitabilityMetrics(amm)
 
     def simulate_price_change(self, token: str, volatility: float):
-        """Simulate a price change for a given token."""
+        """
+        Simulate Price Change
+
+        :param token: The token of the price to be simulated.
+        :type token: str
+        :param volatility: The volatility of the price change.
+        :type volatility: float
+        :return: None
+
+        Simulates the change in price for the given token based on the provided volatility. The result is stored in the 'prices' dictionary of the current instance.
+
+        Example:
+            >>> simulate_price_change("BTC", 0.02)
+
+        Note:
+            The 'prices' dictionary should already exist in the current instance.
+
+        """
         change = random.normalvariate(0, volatility)
         self.prices[token] *= (1 + change)
 
     def simulate_trade(self, token_in: str, token_out: str, amount: float):
-        """Simulate a trade between two tokens."""
+        """
+        Simulates a trade by swapping tokens.
+
+        :param token_in: The token to be traded.
+        :type token_in: str
+        :param token_out: The token to receive in exchange.
+        :type token_out: str
+        :param amount: The amount of the token to be traded.
+        :type amount: float
+        :return: A tuple indicating the success of the trade and the amount received.
+        :rtype: tuple[bool, Union[float, str]]
+        """
         try:
             amount_out = self.amm.swap(token_in, token_out, amount)
             return True, amount_out
@@ -28,7 +63,18 @@ class MarketSimulation:
             return False, str(e)
 
     def simulate_liquidity_event(self, token_a: str, token_b: str, amount_a: float, amount_b: float, is_add: bool):
-        """Simulate adding or removing liquidity."""
+        """
+        Simulates a liquidity event for the given tokens and amounts.
+
+        :param token_a: Token A for the liquidity event.
+        :param token_b: Token B for the liquidity event.
+        :param amount_a: Amount of Token A for the liquidity event.
+        :param amount_b: Amount of Token B for the liquidity event.
+        :param is_add: Flag indicating if it's an add liquidity event or a remove liquidity event.
+        :return: Tuple with two elements. The first element is a boolean indicating whether the liquidity event was successful
+                 or not. The second element is either the LP tokens acquired when adding liquidity or the amounts of tokens A
+                 and B acquired when removing liquidity.
+        """
         try:
             if is_add:
                 lp_tokens = self.amm.add_liquidity(token_a, token_b, amount_a, amount_b)
@@ -40,7 +86,14 @@ class MarketSimulation:
             return False, str(e)
 
     def run_simulation(self, num_steps: int, volatility: float):
-        """Run a simulation for a given number of steps."""
+        """
+        Simulates a financial market by running a simulation with the given number of steps and volatility.
+
+        :param num_steps: The number of steps to run the simulation.
+        :param volatility: The volatility of the market.
+
+        :return: None
+        """
         for step in range(num_steps):
             # Simulate price changes
             for token in self.prices:
@@ -84,7 +137,13 @@ class MarketSimulation:
         })
 
     def generate_report(self) -> List[Dict]:
-        """Generate a report of the simulation results."""
+        """
+        Generates a report based on the history of steps.
+
+        :return: A list of dictionaries representing the report. Each dictionary contains the step, prices (if available),
+                 event type and success (if available), VaR (if available), and final metrics (if available).
+        :rtype: list[dict]
+        """
         report = []
         for step in self.history:
             report_step = {
@@ -113,7 +172,15 @@ class MarketSimulation:
 
 
 def run_market_scenarios(amm: AMM, risk_management: RiskManagement, initial_prices: dict):
-    """Run different market scenarios and return the results."""
+    """
+    Run market scenarios using the given parameters.
+
+    :param amm: An instance of the AMM class representing the automated market maker.
+    :param risk_management: An instance of the RiskManagement class representing the risk management system.
+    :param initial_prices: A dictionary containing the initial prices of tokens in the market.
+
+    :return: A tuple containing the reports generated for each market scenario.
+    """
     # Scenario 1: Stable market
     stable_sim = MarketSimulation(amm, risk_management, initial_prices.copy())
     stable_sim.run_simulation(num_steps=100, volatility=0.01)
