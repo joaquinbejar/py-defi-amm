@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "defi_amm"
-version = "1.0.25"
+version = "0.1.0"
 dynamic = ["readme"]
 authors = [
-    { name = "©2023 EUIPO", email = "info@euipo.europa.eu" },
+    { name = "©2024 Joaquin Bejar", email = "jb@taunais.com" },
 ]
 description = "Common Python Library"
 requires-python = ">=3.11"
