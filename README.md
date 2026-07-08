@@ -55,8 +55,10 @@ Initial simulations suggest:
 5. The rebalancing incentive mechanism encourages more balanced liquidity provision over time.
 
 ## Setup Instructions
+<details>
+<summary>Plain Python</summary>
 
-1. Clone the repository:
+1. Clone the repository:   
    ```
    git clone https://github.com/joaquinbejar/py-defi-amm.git
    cd py-defi-amm
@@ -72,7 +74,27 @@ Initial simulations suggest:
    ```
    make install-dep
    ```
+</details>
 
+<details>
+<summary>Managed by uv</summary>
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/joaquinbejar/py-defi-amm.git
+   cd py-defi-amm
+   ```
+
+2. Create and activate a virtual environment:
+   ```
+   make create-venv-uv
+   ```
+
+3. Install dependencies:
+   ```
+   make install-dep-uv
+   ```
+</details>
 
 ## Running the Model and API
 
@@ -85,6 +107,8 @@ Initial simulations suggest:
    ```
    export FLASK_APP=src/defi_amm/main.py
    flask run
+   # uv version 
+   uv run flask run 
    ```
 
    The API will be available at `http://127.0.0.1:5000/`.

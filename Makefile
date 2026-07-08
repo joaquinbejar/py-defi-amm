@@ -5,6 +5,18 @@ VENV_NAME?=venv
 VENV_ACTIVATE=$(VENV_NAME)/bin/activate
 PYTHON_PATH=$(shell which python3.11)
 
+UV_PYTHON_PATH=$(shell uv python find 3.11)
+
+create-venv-uv: delete-venv-uv
+	echo $(UV_PYTHON_PATH)
+	uv python install 3.11
+	uv python pin 3.11
+	uv venv
+delete-venv-uv:
+	rm -rf .venv
+install-dep-uv:	## Install dependencies
+	uv pip install .
+
 create-venv: delete-venv
 	$(PYTHON_PATH) -m venv $(VENV_NAME)
 	@echo "To activate the venv, run 'source $(VENV_ACTIVATE)'"
