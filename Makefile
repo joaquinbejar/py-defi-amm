@@ -3,7 +3,7 @@ FLASK_APP := src/defi_amm/main.py
 PYINSTALLER := pyinstaller
 VENV_NAME?=venv
 VENV_ACTIVATE=$(VENV_NAME)/bin/activate
-PYTHON_PATH=$(shell which python3.11)
+PYTHON_PATH=$(shell which python3.12)
 
 UV_PYTHON_PATH=$(shell uv python find 3.11)
 
@@ -45,7 +45,7 @@ reinstall-dependencies: update-pip delete-dependencies install-dep clean
 update-pip:
 	$(PYTHON_PATH) --version
 	$(PYTHON_PATH) -m pip install --upgrade pip --no-cache-dir
-	$(PYTHON_PATH) -m pip install pip~=24.2 --force-reinstall --no-cache-dir
+	$(PYTHON_PATH) -m pip install pip~=26.0 --force-reinstall --no-cache-dir
 	pip install --upgrade pip
 
 

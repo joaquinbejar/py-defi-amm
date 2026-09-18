@@ -1,5 +1,5 @@
 # Base image
-FROM python:3.11-slim-buster AS builder
+FROM python:3.12-slim-bookworm AS builder
 
 # Install additional packages
 RUN apt-get -y update && \
@@ -22,7 +22,7 @@ RUN make install-dep
 
 RUN make create-executable
 
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
 WORKDIR /app
 
