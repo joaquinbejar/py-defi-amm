@@ -1,4 +1,4 @@
-# DeFi AMM (Automated Market Maker) Project v0.1.0
+# DeFi AMM (Automated Market Maker) Project v0.2.0
 
 ## Table of Contents
 1. [Introduction](#introduction)
